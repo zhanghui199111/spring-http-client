@@ -1,6 +1,6 @@
-package org.example;
+package org.example.client.spring;
 
-import org.example.client.spring.SpringVerifyClient;
+import org.example.BaseTestCase;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * create: 2023/1/4 21:33
 */
 @SpringBootTest
-public class HttpClientApplicationTest {
+public class SpringClientTest extends BaseTestCase {
 
     @Autowired
     private SpringVerifyClient springVerifyClient;
