@@ -1,5 +1,6 @@
 package org.example.config;
 
+import org.example.client.apache.async.AsyncHttpClientUtil;
 import org.example.client.apache.sync.HttpClientUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,11 @@ public class HttpClientConfig {
     @Bean(name = "httpClient")
     public HttpClientUtil getHttpClient() {
         return new HttpClientUtil(30000, 30000, 30000, 50);
+    }
+
+    @Bean(name = "asyncHttpClient")
+    public AsyncHttpClientUtil getAsyncHttpClient() {
+        return new AsyncHttpClientUtil(30000, 30000, 30000, 50);
     }
 
 }

@@ -1,6 +1,6 @@
 package org.example.client.apache;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONObject;
 import org.example.BaseTestCase;
 import org.example.client.apache.sync.HttpClientUtil;
 import org.junit.jupiter.api.Assertions;
@@ -29,7 +29,6 @@ public class HttpClientTest extends BaseTestCase {
         Map<String, String> urlParams = new HashMap<>();
         urlParams.put("param", param);
         JSONObject responseJSON = httpClient.get(HTTP, "127.0.0.1:8080/get", urlParams);
-        System.out.println(responseJSON);
         Assertions.assertEquals(param, responseJSON.getString("body"));
     }
 
