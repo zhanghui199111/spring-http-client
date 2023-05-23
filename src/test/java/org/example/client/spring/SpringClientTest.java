@@ -1,15 +1,14 @@
 package org.example.client.spring;
 
 import org.example.BaseTestCase;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * author: zhn4528
  * create: 2023/1/4 21:33
 */
-@SpringBootTest
 public class SpringClientTest extends BaseTestCase {
 
     @Autowired
@@ -17,7 +16,9 @@ public class SpringClientTest extends BaseTestCase {
 
     @Test
     void testDemoApi() {
-        System.out.println(springVerifyClient.get("demo"));
+        String param = "afasdva23avdsfa";
+        String result = springVerifyClient.get(param);
+        Assertions.assertEquals(param, result);
     }
 
 }

@@ -15,7 +15,7 @@ public class SpringVerifyApi {
 
     @Bean
     SpringVerifyClient demoApi() {
-        WebClient client = WebClient.builder().baseUrl("http://localhost:8080/").build();
+        WebClient client = WebClient.builder().baseUrl("http://127.0.0.1:8080/").build();
         HttpServiceProxyFactory factory = HttpServiceProxyFactory.builder(WebClientAdapter.forClient(client)).build();
         return factory.createClient(SpringVerifyClient.class);
     }
