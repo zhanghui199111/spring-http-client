@@ -4,15 +4,10 @@ import org.example.BaseTestCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * author: zhn4528
@@ -21,25 +16,17 @@ import java.util.Map;
 public class RestTemplateTest extends BaseTestCase {
 
     @Autowired
-    private RestTemplate restTemplate;
+    private JdkRestTemplateClient jdkRestTemplateClient;
 
     private final static String TEST_URL = "http://localhost:8080/get";
 
     @Test
     void testJdkRestTemplate() {
         String param = "afasdva23avdsfa";
-        Map<String, String> uriParam = new HashMap<>();
+        MultiValueMap<String, String> queryParamMap = new LinkedMultiValueMap<>();
+        queryParamMap.add("param", param);
 
-        UriComponents builder = UriComponentsBuilder.fromHttpUrl(TEST_URL)
-                .queryParam("param", param)
-                .build();
-
-        HttpEntity<String> requestEntity = new HttpEntity<>(null, null);
-
-        ResponseEntity<String> strResponse = restTemplate.exchange(
-                builder.toUriString(), HttpMethod.GET, requestEntity, String.class, uriParam
-        );
-        String result = strResponse.getBody();
+        String result = jdkRestTemplateClient.get(TEST_URL, new HashMap<>(), queryParamMap);
         Assertions.assertEquals(param, result);
     }
 

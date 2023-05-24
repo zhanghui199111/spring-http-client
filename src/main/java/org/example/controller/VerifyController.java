@@ -15,6 +15,7 @@ public class VerifyController {
     public String get(
             @RequestParam(value = "param", required = true) String param
     ) {
+        System.out.println("request happen!");
         return param;
     }
 
